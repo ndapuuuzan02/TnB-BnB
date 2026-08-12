@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#F7F5F1">
 
-  <!--
-    Source standards applied:
-    HTML Web Development Quality Standards v4: :contentReference[oaicite:0]{index=0}
-    Web Design Engineer specification: :contentReference[oaicite:1]{index=1}
-    Funnel methodology: :contentReference[oaicite:2]{index=2}
-  -->
-
-  <!-- placeholder: needs final business name and location -->
-
   <title>TnB BnB | Private Guest Accommodation</title>
+
   <meta
     name="description"
     content="Discover a comfortable private guest room with its own bathroom, air conditioning and private exterior access. Check availability directly."
   >
 
+  <!-- =========================================================
+       PERFORMANCE CONNECTION HINTS
+       ========================================================= -->
+
+  <link rel="preconnect" href="https://i.imgur.com" crossorigin>
+  <link rel="dns-prefetch" href="//i.imgur.com">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://i.imgur.com">
+
+  <!-- Preload only the critical above-the-fold image -->
+  <link
+    rel="preload"
+    as="image"
+    href="https://i.imgur.com/XqMqdzF.png"
+    fetchpriority="high"
+  >
+
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap"
     rel="stylesheet"
@@ -32,8 +39,9 @@
 
   <style>
     /* =========================================================
-       DESIGN TOKENS — BLUEPRINT OVERRIDES
+       DESIGN TOKENS
        ========================================================= */
+
     :root {
       --color-bg-primary: #F7F5F1;
       --color-bg-secondary: #ECE8E2;
@@ -71,6 +79,7 @@
     /* =========================================================
        RESET / BASE
        ========================================================= */
+
     *,
     *::before,
     *::after {
@@ -292,9 +301,21 @@
       transform: none;
     }
 
+    /*
+      PERFORMANCE:
+      Sections below the hero can defer rendering until needed.
+    */
+    @supports (content-visibility: auto) {
+      main > section:not(.hero) {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 800px;
+      }
+    }
+
     /* =========================================================
-       SECTION 1 — NAVBAR
+       NAVBAR
        ========================================================= */
+
     .site-header {
       position: sticky;
       top: 0;
@@ -426,8 +447,9 @@
     }
 
     /* =========================================================
-       SECTION 2 — HERO
+       HERO
        ========================================================= */
+
     .hero {
       padding: 54px 0 64px;
       overflow: hidden;
@@ -505,16 +527,18 @@
     }
 
     /* =========================================================
-       SECTION 3 — TESTIMONIALS
-       Correctly hidden: no verified testimonials provided
+       HIDDEN SECTIONS
        ========================================================= */
-    .testimonials-section[hidden] {
+
+    .testimonials-section[hidden],
+    .blog-section[hidden] {
       display: none !important;
     }
 
     /* =========================================================
-       SECTION 4 — TRUST / WHY CHOOSE US
+       TRUST
        ========================================================= */
+
     .trust-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -548,8 +572,9 @@
     }
 
     /* =========================================================
-       SECTION 5 — FEATURE HIGHLIGHTS / GALLERY
+       GALLERY
        ========================================================= */
+
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -603,7 +628,10 @@
       backdrop-filter: blur(7px);
     }
 
-    /* lightbox */
+    /* =========================================================
+       LIGHTBOX
+       ========================================================= */
+
     .lightbox {
       position: fixed;
       inset: 0;
@@ -661,8 +689,9 @@
     }
 
     /* =========================================================
-       SECTION 6 — HOW IT WORKS
+       PROCESS
        ========================================================= */
+
     .steps-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -699,8 +728,9 @@
     }
 
     /* =========================================================
-       SECTION 7 — OFFERING / YOUR STAY
+       STAY
        ========================================================= */
+
     .stay-card {
       overflow: hidden;
       border: 1px solid var(--color-border);
@@ -772,8 +802,9 @@
     }
 
     /* =========================================================
-       SECTION 8 — ABOUT
+       ABOUT
        ========================================================= */
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -799,16 +830,9 @@
     }
 
     /* =========================================================
-       SECTION 9 — BLOG
-       Correctly hidden: no blog content supplied
+       LOCATION
        ========================================================= */
-    .blog-section[hidden] {
-      display: none !important;
-    }
 
-    /* =========================================================
-       SECTION 10 — LOCATION / AUDIENCE
-       ========================================================= */
     .location-shell {
       display: grid;
       grid-template-columns: 1fr;
@@ -843,8 +867,9 @@
     }
 
     /* =========================================================
-       SECTION 11 — FOOTER + BOOKING
+       FOOTER / BOOKING
        ========================================================= */
+
     .booking-footer {
       background: #242422;
       color: #FFFFFF;
@@ -1046,7 +1071,10 @@
       font-size: 0.77rem;
     }
 
-    /* mobile CTA */
+    /* =========================================================
+       MOBILE CTA
+       ========================================================= */
+
     .mobile-booking-cta {
       position: fixed;
       right: 14px;
@@ -1077,6 +1105,7 @@
     /* =========================================================
        TABLET
        ========================================================= */
+
     @media (min-width: 768px) {
       .container,
       .container-wide {
@@ -1191,6 +1220,7 @@
     /* =========================================================
        DESKTOP
        ========================================================= */
+
     @media (min-width: 1024px) {
       .section {
         padding: var(--space-section) 0;
@@ -1266,6 +1296,7 @@
     /* =========================================================
        MOBILE NAV
        ========================================================= */
+
     @media (max-width: 767px) {
       .mobile-toggle {
         display: inline-flex;
@@ -1370,8 +1401,6 @@
     }
   </style>
 
-  <!-- placeholder: replace placeholders before deployment -->
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1395,7 +1424,6 @@
     }
   }
   </script>
-
 </head>
 
 <body>
@@ -1406,669 +1434,1038 @@
 
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <!-- placeholder: needs business name -->
+
       <a class="brand" href="#home" aria-label="TnB BnB home">
         TnB BnB
       </a>
 
-  <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-    <a href="#room">The Room</a>
-    <a href="#amenities">Amenities</a>
-    <a href="#location">Location</a>
-    <a href="#booking">Contact</a>
-    <a href="#booking" class="btn btn--primary">Check Availability</a>
-  </nav>
+      <nav
+        class="nav-links"
+        id="primary-navigation"
+        aria-label="Primary navigation"
+      >
+        <a href="#room">The Room</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#location">Location</a>
+        <a href="#booking">Contact</a>
+        <a href="#booking" class="btn btn--primary">Check Availability</a>
+      </nav>
 
-  <button
-    class="mobile-toggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="primary-navigation"
-    aria-expanded="false"
-  >
-    <span class="hamburger" aria-hidden="true"><span></span></span>
-  </button>
-</div>
-
+      <button
+        class="mobile-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+      >
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+        </span>
+      </button>
+    </div>
   </header>
 
   <div class="nav-overlay" aria-hidden="true"></div>
 
   <main>
+
     <!-- ======================================================
          2. HERO / HEADER
          ====================================================== -->
+
     <section class="hero" id="home" aria-labelledby="hero-title">
+
       <div class="container hero-grid">
+
         <div class="hero-copy fade-up">
-          <!-- placeholder: needs location -->
-          <span class="eyebrow">Private Guest Accommodation · Ondangwa</span>
 
+          <span class="eyebrow">
+            Private Guest Accommodation · Ondangwa
+          </span>
 
-      <h1 id="hero-title">A comfortable private stay in Ondangwa</h1>
+          <h1 id="hero-title">
+            A comfortable private stay in Ondangwa
+          </h1>
 
-      <p class="lead">
-        A private guest room with its own bathroom, designed for a simple
-        and comfortable stay.
-      </p>
+          <p class="lead">
+            A private guest room with its own bathroom, designed for a simple
+            and comfortable stay.
+          </p>
 
-      <div class="hero-actions">
-        <a class="btn btn--primary" href="#booking">Check Availability</a>
-        <a class="btn btn--secondary" href="#room">View the Room</a>
-      </div>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#booking">
+              Check Availability
+            </a>
 
-      <div class="hero-features" aria-label="Accommodation highlights">
-        <div class="hero-feature">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"></path>
-            <path d="M3 21h15"></path>
-            <path d="M12 12h.01"></path>
-          </svg>
-          <span>Private room</span>
+            <a class="btn btn--secondary" href="#room">
+              View the Room
+            </a>
+          </div>
+
+          <div
+            class="hero-features"
+            aria-label="Accommodation highlights"
+          >
+
+            <div class="hero-feature">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"></path>
+                <path d="M3 21h15"></path>
+                <path d="M12 12h.01"></path>
+              </svg>
+              <span>Private room</span>
+            </div>
+
+            <div class="hero-feature">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 12h16"></path>
+                <path d="M6 12V9a3 3 0 0 1 6 0"></path>
+                <path d="M7 16h.01"></path>
+                <path d="M11 16h.01"></path>
+                <path d="M15 16h.01"></path>
+              </svg>
+              <span>Private bathroom</span>
+            </div>
+
+            <div class="hero-feature">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2v20"></path>
+                <path d="m4.93 6 14.14 12"></path>
+                <path d="m19.07 6-14.14 12"></path>
+                <path d="m8 4 4 4 4-4"></path>
+                <path d="m8 20 4-4 4 4"></path>
+              </svg>
+              <span>Air-conditioned</span>
+            </div>
+
+            <div class="hero-feature">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"></path>
+                <path d="M18 21h3"></path>
+                <path d="M14 12h.01"></path>
+              </svg>
+              <span>Private entrance</span>
+            </div>
+
+          </div>
         </div>
 
-        <div class="hero-feature">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 12h16"></path>
-            <path d="M6 12V9a3 3 0 0 1 6 0"></path>
-            <path d="M7 16h.01"></path>
-            <path d="M11 16h.01"></path>
-            <path d="M15 16h.01"></path>
-          </svg>
-          <span>Private bathroom</span>
-        </div>
-
-        <div class="hero-feature">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2v20"></path>
-            <path d="m4.93 6 14.14 12"></path>
-            <path d="m19.07 6-14.14 12"></path>
-            <path d="m8 4 4 4 4-4"></path>
-            <path d="m8 20 4-4 4 4"></path>
-          </svg>
-          <span>Air-conditioned</span>
-        </div>
-
-        <div class="hero-feature">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"></path>
-            <path d="M18 21h3"></path>
-            <path d="M14 12h.01"></path>
-          </svg>
-          <span>Private entrance</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-image-wrap fade-up">
-      <img
-        class="hero-image"
-        src="https://i.imgur.com/XqMqdzF.png"
-        alt="Bright private guest bedroom with air conditioning, wardrobe and curtained window"
-        width="1536"
-        height="1024"
-        loading="eager"
-        fetchpriority="high"
-      >
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================
-     3. TESTIMONIALS / REVIEWS
-     Hidden because no verified reviews were supplied.
-     ====================================================== -->
-<section
-  class="section testimonials-section"
-  id="reviews"
-  aria-label="Guest reviews"
-  hidden
->
-  <!-- No verified testimonials supplied. -->
-</section>
-
-<!-- ======================================================
-     4. TRUST BADGES / WHY CHOOSE US
-     ====================================================== -->
-<section class="section" id="highlights" aria-labelledby="highlights-title">
-  <div class="container">
-    <div class="section-heading fade-up">
-      <span class="eyebrow">The Essentials</span>
-      <h2 id="highlights-title">Everything you need for a private stay</h2>
-    </div>
-
-    <div class="trust-grid fade-up">
-      <article class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M4 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"></path>
-            <path d="M18 21h3"></path>
-            <path d="M14 12h.01"></path>
-          </svg>
-        </div>
-        <h3>Private entrance</h3>
-        <p>The room has its own exterior access.</p>
-      </article>
-
-      <article class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M4 12h16"></path>
-            <path d="M6 12V9a3 3 0 0 1 6 0"></path>
-            <path d="M7 16h.01"></path>
-            <path d="M11 16h.01"></path>
-            <path d="M15 16h.01"></path>
-          </svg>
-        </div>
-        <h3>Private bathroom</h3>
-        <p>A dedicated bathroom is included with the room.</p>
-      </article>
-
-      <article class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M12 2v20"></path>
-            <path d="m4.93 6 14.14 12"></path>
-            <path d="m19.07 6-14.14 12"></path>
-          </svg>
-        </div>
-        <h3>Air-conditioned</h3>
-        <p>The bedroom includes wall-mounted air conditioning.</p>
-      </article>
-
-      <article class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24">
-            <rect x="4" y="3" width="16" height="18" rx="1"></rect>
-            <path d="M12 3v18"></path>
-            <path d="M9 12h.01"></path>
-            <path d="M15 12h.01"></path>
-          </svg>
-        </div>
-        <h3>Built-in storage</h3>
-        <p>Wardrobe and hanging space are available inside the room.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================
-     5. FEATURE HIGHLIGHTS / PAST WORK → THE SPACE
-     ====================================================== -->
-<section class="section section--secondary" id="room" aria-labelledby="room-title">
-  <div class="container-wide">
-    <div class="section-heading fade-up">
-      <span class="eyebrow">The Space</span>
-      <h2 id="room-title">Take a closer look</h2>
-      <p>
-        A look inside the guest room, private bathroom and exterior entrance.
-      </p>
-    </div>
-
-    <div class="gallery fade-up">
-      <figure class="gallery-item">
-        <button
-          class="gallery-open"
-          type="button"
-          aria-label="Open larger photograph of the guest room"
-          data-image="https://i.imgur.com/XqMqdzF.png"
-          data-alt="Private guest bedroom with wardrobe, air conditioning and curtains"
-        >
+        <div class="hero-image-wrap fade-up">
           <img
+            class="hero-image"
             src="https://i.imgur.com/XqMqdzF.png"
-            alt="Private guest bedroom with wardrobe, air conditioning and curtains"
+            alt="Bright private guest bedroom with air conditioning, wardrobe and curtained window"
             width="1536"
             height="1024"
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            sizes="(min-width: 1024px) 55vw, 100vw"
           >
-          <figcaption class="gallery-caption">The guest room</figcaption>
-        </button>
-      </figure>
-
-      <figure class="gallery-item">
-        <button
-          class="gallery-open"
-          type="button"
-          aria-label="Open larger photograph of the private bathroom"
-          data-image="https://i.imgur.com/9VddB59.png"
-          data-alt="Private guest bathroom with basin and toilet"
-        >
-          <img
-            src="https://i.imgur.com/9VddB59.png"
-            alt="Private guest bathroom with basin and toilet"
-            width="1536"
-            height="1024"
-            loading="lazy"
-          >
-          <figcaption class="gallery-caption">Private bathroom</figcaption>
-        </button>
-      </figure>
-
-      <figure class="gallery-item">
-        <button
-          class="gallery-open"
-          type="button"
-          aria-label="Open larger photograph of the private entrance"
-          data-image="https://i.imgur.com/bn8pbtF.png"
-          data-alt="Exterior guest room entrance with black security door and window"
-        >
-          <img
-            src="https://i.imgur.com/bn8pbtF.png"
-            alt="Exterior guest room entrance with black security door and window"
-            width="1536"
-            height="1024"
-            loading="lazy"
-          >
-          <figcaption class="gallery-caption">Private entrance</figcaption>
-        </button>
-      </figure>
-
-      <figure class="gallery-item">
-        <button
-          class="gallery-open"
-          type="button"
-          aria-label="Open larger photograph of the covered exterior approach"
-          data-image="https://i.imgur.com/RczIhtF.png"
-          data-alt="Paved covered exterior approach outside the guest accommodation"
-        >
-          <img
-            src="https://i.imgur.com/RczIhtF.png"
-            alt="Paved covered exterior approach outside the guest accommodation"
-            width="1536"
-            height="1024"
-            loading="lazy"
-          >
-          <figcaption class="gallery-caption">Exterior access</figcaption>
-        </button>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================
-     6. HOW IT WORKS / PROCESS
-     ====================================================== -->
-<section class="section section--secondary" id="process" aria-labelledby="process-title">
-  <div class="container">
-    <div class="section-heading section-heading--center fade-up">
-      <span class="eyebrow">Booking</span>
-      <h2 id="process-title">A simple way to book</h2>
-      <p>
-        Send your dates, confirm availability and arrange your stay directly.
-      </p>
-    </div>
-
-    <div class="steps-grid fade-up">
-      <article class="step">
-        <div class="step-number">01</div>
-        <h3>Choose your dates</h3>
-        <p>Select your preferred check-in and check-out dates.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-number">02</div>
-        <h3>Send an enquiry</h3>
-        <p>
-          Send the booking request directly through WhatsApp or the enquiry form.
-        </p>
-      </article>
-
-      <article class="step">
-        <div class="step-number">03</div>
-        <h3>Confirm your stay</h3>
-        <p>
-          The host confirms availability and provides the booking details.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================
-     7. OFFERINGS / SERVICES → YOUR STAY
-     ====================================================== -->
-<section class="section" id="amenities" aria-labelledby="stay-title">
-  <div class="container">
-    <div class="section-heading fade-up">
-      <span class="eyebrow">Your Stay</span>
-      <h2 id="stay-title">One private space, kept simple</h2>
-    </div>
-
-    <article class="stay-card fade-up">
-      <img
-        class="stay-card-image"
-        src="https://i.imgur.com/XqMqdzF.png"
-        alt="Interior of the private guest room"
-        width="1536"
-        height="1024"
-        loading="lazy"
-      >
-
-      <div class="stay-card-body">
-        <!-- placeholder: needs final room / guest house name -->
-        <span class="eyebrow">Private Guest Room</span>
-        <h3>TnB BnB</h3>
-
-        <div class="stay-meta" aria-label="Room features">
-          <span>Private room</span>
-          <span>Private bathroom</span>
-          <span>Air conditioning</span>
-          <span>Wardrobe / storage</span>
-          <span>Exterior entrance</span>
         </div>
 
-        <!-- placeholder: needs confirmed nightly price -->
-        <span class="price-placeholder">[Nightly price]</span>
-
-        <!-- placeholder: needs confirmed maximum guest count -->
-        <p>Occupancy: [Maximum guests placeholder]</p>
-
-        <a class="btn btn--primary" href="#booking">Check Availability</a>
       </div>
-    </article>
+    </section>
 
-    <div class="amenities-row fade-up">
-      <article class="amenity-mini">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 12h16"></path>
-          <path d="M6 12V9a3 3 0 0 1 6 0"></path>
-          <path d="M7 16h.01"></path>
-          <path d="M11 16h.01"></path>
-          <path d="M15 16h.01"></path>
-        </svg>
-        <h3>Private bathroom</h3>
-        <p>A dedicated bathroom is included with the accommodation.</p>
-      </article>
+    <!-- ======================================================
+         3. TESTIMONIALS
+         ====================================================== -->
 
-      <article class="amenity-mini">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2v20"></path>
-          <path d="m4.93 6 14.14 12"></path>
-          <path d="m19.07 6-14.14 12"></path>
-        </svg>
-        <h3>Air conditioning</h3>
-        <p>The bedroom includes a wall-mounted air-conditioning unit.</p>
-      </article>
+    <section
+      class="section testimonials-section"
+      id="reviews"
+      aria-label="Guest reviews"
+      hidden
+    >
+    </section>
 
-      <article class="amenity-mini">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="4" y="3" width="16" height="18" rx="1"></rect>
-          <path d="M12 3v18"></path>
-          <path d="M9 12h.01"></path>
-          <path d="M15 12h.01"></path>
-        </svg>
-        <h3>Storage space</h3>
-        <p>Wardrobe and hanging space are available for guests.</p>
-      </article>
-    </div>
-  </div>
-</section>
+    <!-- ======================================================
+         4. TRUST
+         ====================================================== -->
 
-<!-- ======================================================
-     8. ABOUT US / STORY
-     ====================================================== -->
-<section class="section" id="about" aria-labelledby="about-title">
-  <div class="container about-grid">
-    <div class="fade-up">
-      <img
-        class="about-image"
-        src="https://i.imgur.com/bn8pbtF.png"
-        alt="Exterior entrance to the private guest accommodation"
-        width="1536"
-        height="1024"
-        loading="lazy"
-      >
-    </div>
+    <section
+      class="section"
+      id="highlights"
+      aria-labelledby="highlights-title"
+    >
 
-    <div class="about-copy fade-up">
-      <span class="eyebrow">About the Stay</span>
-      <h2 id="about-title">A simple, private place to stay</h2>
+      <div class="container">
 
-      <!-- placeholder: needs final guest house name and location -->
-      <p>
-        TnB BnB offers a private guest room with its own bathroom
-        in Ondangwa. The space provides independent exterior access and a
-        simple setting for guests looking for private accommodation.
-      </p>
-    </div>
-  </div>
-</section>
+        <div class="section-heading fade-up">
+          <span class="eyebrow">The Essentials</span>
 
-<!-- ======================================================
-     9. BLOG / INSIGHTS
-     Hidden because no blog exists.
-     ====================================================== -->
-<section
-  class="section blog-section"
-  id="insights"
-  aria-label="Insights"
-  hidden
->
-  <!-- No blog or editorial content supplied. -->
-</section>
+          <h2 id="highlights-title">
+            Everything you need for a private stay
+          </h2>
+        </div>
 
-<!-- ======================================================
-     10. INDUSTRIES / AUDIENCE → LOCATION
-     ====================================================== -->
-<section
-  class="section section--secondary"
-  id="location"
-  aria-labelledby="location-title"
->
-  <div class="container">
-    <div class="section-heading fade-up">
-      <span class="eyebrow">Location</span>
-      <h2 id="location-title">Stay in Ondangwa</h2>
-      <!-- placeholder: needs verified locality and nearby landmarks -->
-      <p>
-        [Short description of the property's location and nearby landmarks.]
-      </p>
-    </div>
+        <div class="trust-grid fade-up">
 
-    <div class="location-shell fade-up">
-      <div class="location-copy">
-        <h3>Easy to find. Easy to enquire.</h3>
-        <p>
-          Exact location details and directions can be provided as part of
-          the booking confirmation process.
-        </p>
+          <article class="trust-item">
 
-        <!-- placeholder: replace with verified local details -->
-        <p class="location-note">
-          [Suburb / town / nearby landmark information]
-        </p>
+            <div class="trust-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M4 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"></path>
+                <path d="M18 21h3"></path>
+                <path d="M14 12h.01"></path>
+              </svg>
+            </div>
 
-        <a class="btn btn--primary" href="#booking">Check Availability</a>
+            <h3>Private entrance</h3>
+
+            <p>
+              The room has its own exterior access.
+            </p>
+          </article>
+
+          <article class="trust-item">
+
+            <div class="trust-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M4 12h16"></path>
+                <path d="M6 12V9a3 3 0 0 1 6 0"></path>
+                <path d="M7 16h.01"></path>
+                <path d="M11 16h.01"></path>
+                <path d="M15 16h.01"></path>
+              </svg>
+            </div>
+
+            <h3>Private bathroom</h3>
+
+            <p>
+              A dedicated bathroom is included with the room.
+            </p>
+          </article>
+
+          <article class="trust-item">
+
+            <div class="trust-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 2v20"></path>
+                <path d="m4.93 6 14.14 12"></path>
+                <path d="m19.07 6-14.14 12"></path>
+              </svg>
+            </div>
+
+            <h3>Air-conditioned</h3>
+
+            <p>
+              The bedroom includes wall-mounted air conditioning.
+            </p>
+          </article>
+
+          <article class="trust-item">
+
+            <div class="trust-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect x="4" y="3" width="16" height="18" rx="1"></rect>
+                <path d="M12 3v18"></path>
+                <path d="M9 12h.01"></path>
+                <path d="M15 12h.01"></path>
+              </svg>
+            </div>
+
+            <h3>Built-in storage</h3>
+
+            <p>
+              Wardrobe and hanging space are available inside the room.
+            </p>
+          </article>
+
+        </div>
       </div>
+    </section>
 
-      <div class="location-visual">
-        <img
-          src="https://i.imgur.com/RczIhtF.png"
-          alt="Covered paved exterior area at the guest accommodation"
-          width="1536"
-          height="1024"
-          loading="lazy"
-        >
+    <!-- ======================================================
+         5. GALLERY
+         ====================================================== -->
+
+    <section
+      class="section section--secondary"
+      id="room"
+      aria-labelledby="room-title"
+    >
+
+      <div class="container-wide">
+
+        <div class="section-heading fade-up">
+
+          <span class="eyebrow">The Space</span>
+
+          <h2 id="room-title">
+            Take a closer look
+          </h2>
+
+          <p>
+            A look inside the guest room, private bathroom and exterior entrance.
+          </p>
+
+        </div>
+
+        <div class="gallery fade-up">
+
+          <figure class="gallery-item">
+
+            <button
+              class="gallery-open"
+              type="button"
+              aria-label="Open larger photograph of the guest room"
+              data-image="https://i.imgur.com/XqMqdzF.png"
+              data-alt="Private guest bedroom with wardrobe, air conditioning and curtains"
+            >
+
+              <img
+                src="https://i.imgur.com/XqMqdzF.png"
+                alt="Private guest bedroom with wardrobe, air conditioning and curtains"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                sizes="(min-width: 1024px) 45vw, (min-width: 768px) 50vw, 100vw"
+              >
+
+              <figcaption class="gallery-caption">
+                The guest room
+              </figcaption>
+
+            </button>
+          </figure>
+
+          <figure class="gallery-item">
+
+            <button
+              class="gallery-open"
+              type="button"
+              aria-label="Open larger photograph of the private bathroom"
+              data-image="https://i.imgur.com/9VddB59.png"
+              data-alt="Private guest bathroom with basin and toilet"
+            >
+
+              <img
+                src="https://i.imgur.com/9VddB59.png"
+                alt="Private guest bathroom with basin and toilet"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
+              >
+
+              <figcaption class="gallery-caption">
+                Private bathroom
+              </figcaption>
+
+            </button>
+          </figure>
+
+          <figure class="gallery-item">
+
+            <button
+              class="gallery-open"
+              type="button"
+              aria-label="Open larger photograph of the private entrance"
+              data-image="https://i.imgur.com/bn8pbtF.png"
+              data-alt="Exterior guest room entrance with black security door and window"
+            >
+
+              <img
+                src="https://i.imgur.com/bn8pbtF.png"
+                alt="Exterior guest room entrance with black security door and window"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
+              >
+
+              <figcaption class="gallery-caption">
+                Private entrance
+              </figcaption>
+
+            </button>
+          </figure>
+
+          <figure class="gallery-item">
+
+            <button
+              class="gallery-open"
+              type="button"
+              aria-label="Open larger photograph of the covered exterior approach"
+              data-image="https://i.imgur.com/RczIhtF.png"
+              data-alt="Paved covered exterior approach outside the guest accommodation"
+            >
+
+              <img
+                src="https://i.imgur.com/RczIhtF.png"
+                alt="Paved covered exterior approach outside the guest accommodation"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                sizes="(min-width: 1024px) 50vw, (min-width: 768px) 100vw, 100vw"
+              >
+
+              <figcaption class="gallery-caption">
+                Exterior access
+              </figcaption>
+
+            </button>
+          </figure>
+
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <!-- ======================================================
+         6. PROCESS
+         ====================================================== -->
+
+    <section
+      class="section section--secondary"
+      id="process"
+      aria-labelledby="process-title"
+    >
+
+      <div class="container">
+
+        <div class="section-heading section-heading--center fade-up">
+
+          <span class="eyebrow">
+            Booking
+          </span>
+
+          <h2 id="process-title">
+            A simple way to book
+          </h2>
+
+          <p>
+            Send your dates, confirm availability and arrange your stay directly.
+          </p>
+
+        </div>
+
+        <div class="steps-grid fade-up">
+
+          <article class="step">
+            <div class="step-number">01</div>
+
+            <h3>Choose your dates</h3>
+
+            <p>
+              Select your preferred check-in and check-out dates.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+
+            <h3>Send an enquiry</h3>
+
+            <p>
+              Send the booking request directly through WhatsApp or the enquiry form.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+
+            <h3>Confirm your stay</h3>
+
+            <p>
+              The host confirms availability and provides the booking details.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         7. YOUR STAY
+         ====================================================== -->
+
+    <section
+      class="section"
+      id="amenities"
+      aria-labelledby="stay-title"
+    >
+
+      <div class="container">
+
+        <div class="section-heading fade-up">
+
+          <span class="eyebrow">
+            Your Stay
+          </span>
+
+          <h2 id="stay-title">
+            One private space, kept simple
+          </h2>
+
+        </div>
+
+        <article class="stay-card fade-up">
+
+          <img
+            class="stay-card-image"
+            src="https://i.imgur.com/XqMqdzF.png"
+            alt="Interior of the private guest room"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            sizes="(min-width: 1200px) 1200px, 100vw"
+          >
+
+          <div class="stay-card-body">
+
+            <span class="eyebrow">
+              Private Guest Room
+            </span>
+
+            <h3>TnB BnB</h3>
+
+            <div
+              class="stay-meta"
+              aria-label="Room features"
+            >
+
+              <span>Private room</span>
+              <span>Private bathroom</span>
+              <span>Air conditioning</span>
+              <span>Wardrobe / storage</span>
+              <span>Exterior entrance</span>
+
+            </div>
+
+            <span class="price-placeholder">
+              [Nightly price]
+            </span>
+
+            <p>
+              Occupancy: [Maximum guests placeholder]
+            </p>
+
+            <a
+              class="btn btn--primary"
+              href="#booking"
+            >
+              Check Availability
+            </a>
+
+          </div>
+        </article>
+
+        <div class="amenities-row fade-up">
+
+          <article class="amenity-mini">
+
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M4 12h16"></path>
+              <path d="M6 12V9a3 3 0 0 1 6 0"></path>
+              <path d="M7 16h.01"></path>
+              <path d="M11 16h.01"></path>
+              <path d="M15 16h.01"></path>
+            </svg>
+
+            <h3>Private bathroom</h3>
+
+            <p>
+              A dedicated bathroom is included with the accommodation.
+            </p>
+
+          </article>
+
+          <article class="amenity-mini">
+
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 2v20"></path>
+              <path d="m4.93 6 14.14 12"></path>
+              <path d="m19.07 6-14.14 12"></path>
+            </svg>
+
+            <h3>Air conditioning</h3>
+
+            <p>
+              The bedroom includes a wall-mounted air-conditioning unit.
+            </p>
+
+          </article>
+
+          <article class="amenity-mini">
+
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <rect x="4" y="3" width="16" height="18" rx="1"></rect>
+              <path d="M12 3v18"></path>
+              <path d="M9 12h.01"></path>
+              <path d="M15 12h.01"></path>
+            </svg>
+
+            <h3>Storage space</h3>
+
+            <p>
+              Wardrobe and hanging space are available for guests.
+            </p>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         8. ABOUT
+         ====================================================== -->
+
+    <section
+      class="section"
+      id="about"
+      aria-labelledby="about-title"
+    >
+
+      <div class="container about-grid">
+
+        <div class="fade-up">
+
+          <img
+            class="about-image"
+            src="https://i.imgur.com/bn8pbtF.png"
+            alt="Exterior entrance to the private guest accommodation"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            sizes="(min-width: 768px) 52vw, 100vw"
+          >
+
+        </div>
+
+        <div class="about-copy fade-up">
+
+          <span class="eyebrow">
+            About the Stay
+          </span>
+
+          <h2 id="about-title">
+            A simple, private place to stay
+          </h2>
+
+          <p>
+            TnB BnB offers a private guest room with its own bathroom
+            in Ondangwa. The space provides independent exterior access and a
+            simple setting for guests looking for private accommodation.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         9. BLOG
+         ====================================================== -->
+
+    <section
+      class="section blog-section"
+      id="insights"
+      aria-label="Insights"
+      hidden
+    >
+    </section>
+
+    <!-- ======================================================
+         10. LOCATION
+         ====================================================== -->
+
+    <section
+      class="section section--secondary"
+      id="location"
+      aria-labelledby="location-title"
+    >
+
+      <div class="container">
+
+        <div class="section-heading fade-up">
+
+          <span class="eyebrow">
+            Location
+          </span>
+
+          <h2 id="location-title">
+            Stay in Ondangwa
+          </h2>
+
+          <p>
+            [Short description of the property's location and nearby landmarks.]
+          </p>
+
+        </div>
+
+        <div class="location-shell fade-up">
+
+          <div class="location-copy">
+
+            <h3>
+              Easy to find. Easy to enquire.
+            </h3>
+
+            <p>
+              Exact location details and directions can be provided as part of
+              the booking confirmation process.
+            </p>
+
+            <p class="location-note">
+              [Suburb / town / nearby landmark information]
+            </p>
+
+            <a
+              class="btn btn--primary"
+              href="#booking"
+            >
+              Check Availability
+            </a>
+
+          </div>
+
+          <div class="location-visual">
+
+            <img
+              src="https://i.imgur.com/RczIhtF.png"
+              alt="Covered paved exterior area at the guest accommodation"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              sizes="(min-width: 768px) 55vw, 100vw"
+            >
+
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
   <!-- ========================================================
-       11. FOOTER + FINAL BOOKING CTA
+       11. FOOTER + BOOKING
        ======================================================== -->
 
-  <footer class="booking-footer" id="booking">
+  <footer
+    class="booking-footer"
+    id="booking"
+  >
+
     <div class="booking-area">
+
       <div class="container booking-grid">
+
         <div class="booking-copy fade-up">
-          <span class="eyebrow" style="color:#D2CCC5;">Check Availability</span>
-          <h2>Ready to check your dates?</h2>
+
+          <span
+            class="eyebrow"
+            style="color:#D2CCC5;"
+          >
+            Check Availability
+          </span>
+
+          <h2>
+            Ready to check your dates?
+          </h2>
+
           <p>
             Send your preferred dates and get in touch directly about availability.
           </p>
 
-      <div class="booking-points">
-        <div class="booking-point">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 2v4M18 2v4M3 9h18"></path>
-            <rect x="3" y="4" width="18" height="17" rx="2"></rect>
-          </svg>
-          <span>Choose your preferred check-in and check-out dates.</span>
+          <div class="booking-points">
+
+            <div class="booking-point">
+
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M6 2v4M18 2v4M3 9h18"></path>
+                <rect x="3" y="4" width="18" height="17" rx="2"></rect>
+              </svg>
+
+              <span>
+                Choose your preferred check-in and check-out dates.
+              </span>
+
+            </div>
+
+            <div class="booking-point">
+
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+              </svg>
+
+              <span>
+                Send the enquiry directly to the host.
+              </span>
+
+            </div>
+
+            <div class="booking-point">
+
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="m5 12 4 4L19 6"></path>
+              </svg>
+
+              <span>
+                Receive confirmation and booking details.
+              </span>
+
+            </div>
+
+          </div>
         </div>
 
-        <div class="booking-point">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
-          </svg>
-          <span>Send the enquiry directly to the host.</span>
-        </div>
+        <form
+          class="booking-form fade-up"
+          id="contact-form"
+          novalidate
+        >
 
-        <div class="booking-point">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m5 12 4 4L19 6"></path>
-          </svg>
-          <span>Receive confirmation and booking details.</span>
-        </div>
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label for="check-in">
+                Check-in *
+              </label>
+
+              <input
+                id="check-in"
+                name="check-in"
+                type="date"
+                required
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="check-out">
+                Check-out *
+              </label>
+
+              <input
+                id="check-out"
+                name="check-out"
+                type="date"
+                required
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="guests">
+                Guests *
+              </label>
+
+              <input
+                id="guests"
+                name="guests"
+                type="number"
+                min="1"
+                placeholder="Number of guests"
+                required
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="guest-name">
+                Name *
+              </label>
+
+              <input
+                id="guest-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+              >
+
+            </div>
+
+            <div class="form-group form-group--full">
+
+              <label for="phone">
+                WhatsApp / Phone *
+              </label>
+
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="Your phone number"
+                required
+              >
+
+            </div>
+
+            <div class="form-group form-group--full">
+
+              <label for="message">
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Anything else you'd like the host to know?"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <button
+            class="btn btn--primary"
+            type="submit"
+          >
+            Send Enquiry
+          </button>
+
+          <a
+            class="whatsapp-link"
+            href="[WHATSAPP LINK]"
+            aria-label="Enquire about the guest room on WhatsApp"
+          >
+            Enquire on WhatsApp
+          </a>
+
+          <p class="form-note">
+            Direct enquiry form — connect to your preferred form endpoint before launch.
+          </p>
+
+        </form>
+
       </div>
     </div>
 
-    <form class="booking-form fade-up" id="contact-form" novalidate>
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="check-in">Check-in *</label>
-          <input id="check-in" name="check-in" type="date" required>
+    <div class="footer-main">
+
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+          <strong>
+            TnB BnB
+          </strong>
+
+          <p>
+            Private guest accommodation in Ondangwa.
+          </p>
+
         </div>
 
-        <div class="form-group">
-          <label for="check-out">Check-out *</label>
-          <input id="check-out" name="check-out" type="date" required>
-        </div>
+        <div>
 
-        <div class="form-group">
-          <label for="guests">Guests *</label>
-          <!-- placeholder: adjust max when maximum occupancy is confirmed -->
-          <input
-            id="guests"
-            name="guests"
-            type="number"
-            min="1"
-            placeholder="Number of guests"
-            required
+          <div class="footer-heading">
+            Quick Links
+          </div>
+
+          <nav
+            class="footer-links"
+            aria-label="Footer navigation"
           >
+            <a href="#room">The Room</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#location">Location</a>
+            <a href="#booking">Check Availability</a>
+          </nav>
+
         </div>
 
-        <div class="form-group">
-          <label for="guest-name">Name *</label>
-          <input
-            id="guest-name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            placeholder="Your name"
-            required
-          >
+        <div>
+
+          <div class="footer-heading">
+            Contact
+          </div>
+
+          <div class="footer-links">
+
+            <a href="tel:+264814866622">
+              Call Now
+            </a>
+
+            <a href="+264814866622">
+              WhatsApp
+            </a>
+
+            <a href="mailto:jntbnb01@gmail.com">
+              Email Us
+            </a>
+
+            <span style="color:#CAC5BF;font-size:.87rem;">
+              General location
+            </span>
+
+          </div>
         </div>
 
-        <div class="form-group form-group--full">
-          <label for="phone">WhatsApp / Phone *</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autocomplete="tel"
-            placeholder="Your phone number"
-            required
-          >
-        </div>
-
-        <div class="form-group form-group--full">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Anything else you'd like the host to know?"
-          ></textarea>
-        </div>
-      </div>
-
-      <button class="btn btn--primary" type="submit">
-        Send Enquiry
-      </button>
-
-      <!--
-        placeholder: replace href with:
-        https://wa.me/[NUMBER]?text=[ENCODED_MESSAGE]
-      -->
-      <a
-        class="whatsapp-link"
-        href="[WHATSAPP LINK]"
-        aria-label="Enquire about the guest room on WhatsApp"
-      >
-        Enquire on WhatsApp
-      </a>
-
-      <p class="form-note">
-        <!-- placeholder: connect this demonstration form to a real submission endpoint -->
-        Direct enquiry form — connect to your preferred form endpoint before launch.
-      </p>
-    </form>
-  </div>
-</div>
-
-<div class="footer-main">
-  <div class="container footer-grid">
-    <div class="footer-brand">
-      <!-- placeholder: needs business name -->
-      <strong>TnB BnB</strong>
-      <p>Private guest accommodation in Ondangwa.</p>
-    </div>
-
-    <div>
-      <div class="footer-heading">Quick Links</div>
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="#room">The Room</a>
-        <a href="#amenities">Amenities</a>
-        <a href="#location">Location</a>
-        <a href="#booking">Check Availability</a>
-      </nav>
-    </div>
-
-    <div>
-      <div class="footer-heading">Contact</div>
-      <div class="footer-links">
-        <!-- placeholder: needs real contact details -->
-        <a href="tel:+264814866622">Call Now</a>
-        <a href="+264814866622">WhatsApp</a>
-        <a href="mailto:jntbnb01@gmail.com">Email Us</a>
-        <span style="color:#CAC5BF;font-size:.87rem;">General location</span>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container footer-bottom">
-  <span>&copy; 2026 TnB BnB. All rights reserved.</span>
-  <span>Private guest accommodation</span>
-</div>
+    <div class="container footer-bottom">
+
+      <span>
+        &copy; 2026 TnB BnB. All rights reserved.
+      </span>
+
+      <span>
+        Private guest accommodation
+      </span>
+
+    </div>
 
   </footer>
 
-<a
-class="mobile-booking-cta"
-id="mobile-booking-cta"
-href="#booking"
-
->
-
-
-Check Availability
-
+  <a
+    class="mobile-booking-cta"
+    id="mobile-booking-cta"
+    href="#booking"
+  >
+    Check Availability
   </a>
 
-  <!-- Gallery lightbox -->
+  <!-- ========================================================
+       LIGHTBOX
+       ======================================================== -->
 
   <div
     class="lightbox"
@@ -2078,6 +2475,7 @@ Check Availability
     aria-label="Property photo viewer"
     aria-hidden="true"
   >
+
     <button
       class="lightbox-close"
       type="button"
@@ -2086,324 +2484,714 @@ Check Availability
       &times;
     </button>
 
-```
-<button
-  class="lightbox-control lightbox-prev"
-  type="button"
-  aria-label="Previous photo"
->
-  &#8249;
-</button>
+    <button
+      class="lightbox-control lightbox-prev"
+      type="button"
+      aria-label="Previous photo"
+    >
+      &#8249;
+    </button>
 
-<img
-  class="lightbox-image"
-  id="lightbox-image"
-  src=""
-  alt=""
->
+    <img
+      class="lightbox-image"
+      id="lightbox-image"
+      src=""
+      alt=""
+      decoding="async"
+    >
 
-<button
-  class="lightbox-control lightbox-next"
-  type="button"
-  aria-label="Next photo"
->
-  &#8250;
-</button>
-```
+    <button
+      class="lightbox-control lightbox-next"
+      type="button"
+      aria-label="Next photo"
+    >
+      &#8250;
+    </button>
 
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      /* =========================
-         Mobile navigation
-         ========================= */
+
+      /* =====================================================
+         SHARED ELEMENTS
+         ===================================================== */
+
       const body = document.body;
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".mobile-toggle");
       const nav = document.querySelector(".nav-links");
       const overlay = document.querySelector(".nav-overlay");
 
+      /* =====================================================
+         MOBILE NAVIGATION
+         ===================================================== */
+
       const closeMenu = () => {
         if (!toggle || !nav || !overlay) return;
+
         nav.classList.remove("is-open");
         overlay.classList.remove("is-open");
+
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open navigation menu");
+
         body.classList.remove("menu-open");
       };
 
       const openMenu = () => {
         if (!toggle || !nav || !overlay) return;
+
         nav.classList.add("is-open");
         overlay.classList.add("is-open");
+
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Close navigation menu");
+
         body.classList.add("menu-open");
       };
 
       if (toggle && nav && overlay) {
+
         toggle.addEventListener("click", () => {
-          const expanded = toggle.getAttribute("aria-expanded") === "true";
-          expanded ? closeMenu() : openMenu();
+
+          const expanded =
+            toggle.getAttribute("aria-expanded") === "true";
+
+          expanded
+            ? closeMenu()
+            : openMenu();
+
         });
 
-        overlay.addEventListener("click", closeMenu);
+        overlay.addEventListener(
+          "click",
+          closeMenu
+        );
 
         nav.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", closeMenu);
+
+          link.addEventListener(
+            "click",
+            closeMenu
+          );
+
         });
 
         document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") closeMenu();
+
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+
         });
+
       }
 
-      /* =========================
-         Header scroll treatment
-         ========================= */
+      /* =====================================================
+         HEADER SCROLL
+         ===================================================== */
+
       const updateHeader = () => {
+
         if (!header) return;
-        header.classList.toggle("is-scrolled", window.scrollY > 40);
+
+        header.classList.toggle(
+          "is-scrolled",
+          window.scrollY > 40
+        );
+
       };
 
       updateHeader();
-      window.addEventListener("scroll", updateHeader, { passive: true });
 
-      /* =========================
-         Smooth anchor scroll
-         ========================= */
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", (event) => {
-          const href = anchor.getAttribute("href");
+      window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+      );
 
-          if (!href || href === "#") return;
+      /* =====================================================
+         SMOOTH ANCHORS
+         ===================================================== */
 
-          let target;
+      document
+        .querySelectorAll('a[href^="#"]')
+        .forEach((anchor) => {
 
-          try {
-            target = document.querySelector(href);
-          } catch (error) {
-            return;
-          }
+          anchor.addEventListener(
+            "click",
+            (event) => {
 
-          if (!target) return;
+              const href =
+                anchor.getAttribute("href");
 
-          event.preventDefault();
+              if (!href || href === "#") {
+                return;
+              }
 
-          target.scrollIntoView({
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-              ? "auto"
-              : "smooth",
-            block: "start"
-          });
+              let target;
+
+              try {
+
+                target =
+                  document.querySelector(href);
+
+              } catch (error) {
+
+                return;
+
+              }
+
+              if (!target) return;
+
+              event.preventDefault();
+
+              target.scrollIntoView({
+                behavior:
+                  window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                  ).matches
+                    ? "auto"
+                    : "smooth",
+
+                block: "start"
+              });
+
+            }
+          );
+
         });
-      });
 
-      /* =========================
-         Scroll reveal
-         ========================= */
-      const revealItems = document.querySelectorAll(".fade-up");
+      /* =====================================================
+         SCROLL REVEAL
+         ===================================================== */
+
+      const revealItems =
+        document.querySelectorAll(".fade-up");
 
       if (
         "IntersectionObserver" in window &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        !window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
       ) {
-        const revealObserver = new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12 }
-        );
 
-        revealItems.forEach((item) => revealObserver.observe(item));
+        const revealObserver =
+          new IntersectionObserver(
+            (entries, observer) => {
+
+              entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                  entry.target.classList.add(
+                    "is-visible"
+                  );
+
+                  observer.unobserve(
+                    entry.target
+                  );
+
+                }
+
+              });
+
+            },
+            {
+              threshold: 0.12,
+              rootMargin: "50px 0px"
+            }
+          );
+
+        revealItems.forEach((item) => {
+          revealObserver.observe(item);
+        });
+
       } else {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
+
+        revealItems.forEach((item) => {
+          item.classList.add("is-visible");
+        });
+
       }
 
-      /* =========================
-         Booking form demo
-         ========================= */
-      const form = document.getElementById("contact-form");
+      /* =====================================================
+         BOOKING FORM
+         ===================================================== */
+
+      const form =
+        document.getElementById("contact-form");
 
       if (form) {
-        const checkIn = document.getElementById("check-in");
-        const checkOut = document.getElementById("check-out");
+
+        const checkIn =
+          document.getElementById("check-in");
+
+        const checkOut =
+          document.getElementById("check-out");
 
         const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, "0");
-        const dd = String(today.getDate()).padStart(2, "0");
-        const todayString = `${yyyy}-${mm}-${dd}`;
 
-        if (checkIn) checkIn.min = todayString;
-        if (checkOut) checkOut.min = todayString;
+        const yyyy =
+          today.getFullYear();
 
-        if (checkIn && checkOut) {
-          checkIn.addEventListener("change", () => {
-            checkOut.min = checkIn.value || todayString;
+        const mm =
+          String(
+            today.getMonth() + 1
+          ).padStart(2, "0");
 
-            if (checkOut.value && checkOut.value <= checkIn.value) {
-              checkOut.value = "";
-            }
-          });
+        const dd =
+          String(
+            today.getDate()
+          ).padStart(2, "0");
+
+        const todayString =
+          `${yyyy}-${mm}-${dd}`;
+
+        if (checkIn) {
+          checkIn.min = todayString;
         }
 
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
+        if (checkOut) {
+          checkOut.min = todayString;
+        }
 
-          if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-          }
+        if (checkIn && checkOut) {
 
-          const submitButton = form.querySelector('button[type="submit"]');
+          checkIn.addEventListener(
+            "change",
+            () => {
 
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
-          }
+              checkOut.min =
+                checkIn.value ||
+                todayString;
 
-          window.setTimeout(() => {
-            alert("Thank you! We'll respond within 24 hours.");
-            form.reset();
+              if (
+                checkOut.value &&
+                checkOut.value <= checkIn.value
+              ) {
+
+                checkOut.value = "";
+
+              }
+
+            }
+          );
+
+        }
+
+        form.addEventListener(
+          "submit",
+          (event) => {
+
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+
+              form.reportValidity();
+              return;
+
+            }
+
+            const submitButton =
+              form.querySelector(
+                'button[type="submit"]'
+              );
 
             if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = "Send Enquiry";
+
+              submitButton.disabled = true;
+              submitButton.textContent =
+                "Sending...";
+
             }
-          }, 500);
-        });
+
+            window.setTimeout(
+              () => {
+
+                alert(
+                  "Thank you! We'll respond within 24 hours."
+                );
+
+                form.reset();
+
+                if (submitButton) {
+
+                  submitButton.disabled = false;
+                  submitButton.textContent =
+                    "Send Enquiry";
+
+                }
+
+              },
+              500
+            );
+
+          }
+        );
+
       }
 
-      /* =========================
-         Mobile sticky booking CTA
-         ========================= */
-      const mobileCTA = document.getElementById("mobile-booking-cta");
-      const bookingSection = document.getElementById("booking");
-      const heroSection = document.getElementById("home");
+      /* =====================================================
+         MOBILE STICKY CTA
+         ===================================================== */
 
-      if (mobileCTA && bookingSection && heroSection) {
+      const mobileCTA =
+        document.getElementById(
+          "mobile-booking-cta"
+        );
+
+      const bookingSection =
+        document.getElementById(
+          "booking"
+        );
+
+      const heroSection =
+        document.getElementById(
+          "home"
+        );
+
+      if (
+        mobileCTA &&
+        bookingSection &&
+        heroSection
+      ) {
+
+        let ticking = false;
+
         const updateMobileCTA = () => {
-          const isMobile = window.innerWidth < 768;
-          const heroBottom = heroSection.getBoundingClientRect().bottom;
-          const bookingTop = bookingSection.getBoundingClientRect().top;
-          const viewportHeight = window.innerHeight;
+
+          const isMobile =
+            window.innerWidth < 768;
+
+          const heroBottom =
+            heroSection
+              .getBoundingClientRect()
+              .bottom;
+
+          const bookingTop =
+            bookingSection
+              .getBoundingClientRect()
+              .top;
+
+          const viewportHeight =
+            window.innerHeight;
 
           if (!isMobile) {
-            mobileCTA.classList.remove("is-visible");
+
+            mobileCTA.classList.remove(
+              "is-visible"
+            );
+
+            mobileCTA.classList.remove(
+              "is-hidden-near-footer"
+            );
+
             return;
+
           }
 
-          mobileCTA.classList.toggle("is-visible", heroBottom < 0);
+          mobileCTA.classList.toggle(
+            "is-visible",
+            heroBottom < 0
+          );
+
           mobileCTA.classList.toggle(
             "is-hidden-near-footer",
-            bookingTop < viewportHeight * 0.9
+            bookingTop <
+              viewportHeight * 0.9
           );
+
+        };
+
+        const requestCTAUpdate = () => {
+
+          if (ticking) return;
+
+          ticking = true;
+
+          window.requestAnimationFrame(
+            () => {
+
+              updateMobileCTA();
+              ticking = false;
+
+            }
+          );
+
         };
 
         updateMobileCTA();
-        window.addEventListener("scroll", updateMobileCTA, { passive: true });
-        window.addEventListener("resize", updateMobileCTA);
+
+        window.addEventListener(
+          "scroll",
+          requestCTAUpdate,
+          { passive: true }
+        );
+
+        window.addEventListener(
+          "resize",
+          requestCTAUpdate,
+          { passive: true }
+        );
+
       }
 
-      /* =========================
-         Accessible gallery lightbox
-         ========================= */
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImage = document.getElementById("lightbox-image");
-      const closeLightboxButton = document.querySelector(".lightbox-close");
-      const previousButton = document.querySelector(".lightbox-prev");
-      const nextButton = document.querySelector(".lightbox-next");
-      const galleryButtons = Array.from(
-        document.querySelectorAll(".gallery-open")
-      );
+      /* =====================================================
+         ACCESSIBLE GALLERY LIGHTBOX
+         ===================================================== */
+
+      const lightbox =
+        document.getElementById(
+          "lightbox"
+        );
+
+      const lightboxImage =
+        document.getElementById(
+          "lightbox-image"
+        );
+
+      const closeLightboxButton =
+        document.querySelector(
+          ".lightbox-close"
+        );
+
+      const previousButton =
+        document.querySelector(
+          ".lightbox-prev"
+        );
+
+      const nextButton =
+        document.querySelector(
+          ".lightbox-next"
+        );
+
+      const galleryButtons =
+        Array.from(
+          document.querySelectorAll(
+            ".gallery-open"
+          )
+        );
 
       let activeImageIndex = 0;
       let previouslyFocusedElement = null;
 
       const renderLightboxImage = () => {
-        if (!lightboxImage || galleryButtons.length === 0) return;
 
-        const button = galleryButtons[activeImageIndex];
-        lightboxImage.src = button.dataset.image || "";
-        lightboxImage.alt = button.dataset.alt || "Guest accommodation photograph";
+        if (
+          !lightboxImage ||
+          galleryButtons.length === 0
+        ) {
+          return;
+        }
+
+        const button =
+          galleryButtons[
+            activeImageIndex
+          ];
+
+        const image =
+          button.dataset.image || "";
+
+        const alt =
+          button.dataset.alt ||
+          "Guest accommodation photograph";
+
+        /*
+          Assigning the image here means the lightbox
+          does not request its image until required.
+        */
+        lightboxImage.src = image;
+        lightboxImage.alt = alt;
+
       };
 
       const openLightbox = (index) => {
+
         if (!lightbox) return;
 
         activeImageIndex = index;
-        previouslyFocusedElement = document.activeElement;
+
+        previouslyFocusedElement =
+          document.activeElement;
+
         renderLightboxImage();
 
-        lightbox.classList.add("is-open");
-        lightbox.setAttribute("aria-hidden", "false");
-        body.classList.add("menu-open");
+        lightbox.classList.add(
+          "is-open"
+        );
 
-        if (closeLightboxButton) closeLightboxButton.focus();
+        lightbox.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+        body.classList.add(
+          "menu-open"
+        );
+
+        if (closeLightboxButton) {
+          closeLightboxButton.focus();
+        }
+
       };
 
       const closeLightbox = () => {
+
         if (!lightbox) return;
 
-        lightbox.classList.remove("is-open");
-        lightbox.setAttribute("aria-hidden", "true");
-        body.classList.remove("menu-open");
+        lightbox.classList.remove(
+          "is-open"
+        );
+
+        lightbox.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        body.classList.remove(
+          "menu-open"
+        );
+
+        /*
+          Release the lightbox resource after closing.
+          The normal gallery thumbnail remains cached.
+        */
+        if (lightboxImage) {
+
+          lightboxImage.removeAttribute(
+            "src"
+          );
+
+          lightboxImage.alt = "";
+
+        }
 
         if (
           previouslyFocusedElement &&
-          typeof previouslyFocusedElement.focus === "function"
+          typeof previouslyFocusedElement.focus ===
+            "function"
         ) {
+
           previouslyFocusedElement.focus();
+
         }
+
       };
 
       const showPrevious = () => {
+
         activeImageIndex =
-          (activeImageIndex - 1 + galleryButtons.length) % galleryButtons.length;
+          (
+            activeImageIndex -
+            1 +
+            galleryButtons.length
+          ) %
+          galleryButtons.length;
+
         renderLightboxImage();
+
       };
 
       const showNext = () => {
-        activeImageIndex = (activeImageIndex + 1) % galleryButtons.length;
+
+        activeImageIndex =
+          (
+            activeImageIndex +
+            1
+          ) %
+          galleryButtons.length;
+
         renderLightboxImage();
+
       };
 
-      galleryButtons.forEach((button, index) => {
-        button.addEventListener("click", () => openLightbox(index));
-      });
+      galleryButtons.forEach(
+        (button, index) => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              openLightbox(index);
+
+            }
+          );
+
+        }
+      );
 
       if (closeLightboxButton) {
-        closeLightboxButton.addEventListener("click", closeLightbox);
+
+        closeLightboxButton.addEventListener(
+          "click",
+          closeLightbox
+        );
+
       }
 
       if (previousButton) {
-        previousButton.addEventListener("click", showPrevious);
+
+        previousButton.addEventListener(
+          "click",
+          showPrevious
+        );
+
       }
 
       if (nextButton) {
-        nextButton.addEventListener("click", showNext);
+
+        nextButton.addEventListener(
+          "click",
+          showNext
+        );
+
       }
 
       if (lightbox) {
-        lightbox.addEventListener("click", (event) => {
-          if (event.target === lightbox) closeLightbox();
-        });
+
+        lightbox.addEventListener(
+          "click",
+          (event) => {
+
+            if (event.target === lightbox) {
+              closeLightbox();
+            }
+
+          }
+        );
+
       }
 
-      document.addEventListener("keydown", (event) => {
-        if (!lightbox || !lightbox.classList.contains("is-open")) return;
+      document.addEventListener(
+        "keydown",
+        (event) => {
 
-        if (event.key === "Escape") closeLightbox();
-        if (event.key === "ArrowLeft") showPrevious();
-        if (event.key === "ArrowRight") showNext();
-      });
+          if (
+            !lightbox ||
+            !lightbox.classList.contains(
+              "is-open"
+            )
+          ) {
+            return;
+          }
+
+          if (event.key === "Escape") {
+            closeLightbox();
+          }
+
+          if (event.key === "ArrowLeft") {
+            showPrevious();
+          }
+
+          if (event.key === "ArrowRight") {
+            showNext();
+          }
+
+        }
+      );
+
     });
   </script>
 
